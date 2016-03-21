@@ -13,3 +13,4 @@ gem install dotenv
 ## Todo
 * Gemfile
 * More fields for the CSV
+* OAuth
