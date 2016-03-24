@@ -21,9 +21,11 @@ user_id = ARGV[0]
 canvas = Canvas::API.new(:host => CANVAS_URL, :token => CANVAS_TOKEN)
 page_views = canvas.get("/api/v1/users/" + user_id + "/page_views?per_page=100")
 
+# Keep loading the page views till we get them all!
 while page_views.more?  do
     page_views.next_page!
 end
 
+# Output as CSV
 puts 'url,action,created_at,interaction_seconds,remote_ip'
 page_views.each { |x| puts x['url'] + ',' + x['action'] + ',' + x['created_at'] + ',' + x['interaction_seconds'].to_s + ',' + x['remote_ip'] }
