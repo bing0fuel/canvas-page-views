@@ -23,7 +23,7 @@ page_views = canvas.get("/api/v1/users/" + user_id + "/page_views?per_page=100")
 
 while page_views.more?  do
     page_views.next_page!
-    puts page_views.length
 end
 
-page_views.each { |x| puts x['url'] + ',' + x['action'] }
+puts 'url,action,created_at,interaction_seconds,remote_ip'
+page_views.each { |x| puts x['url'] + ',' + x['action'] + ',' + x['created_at'] + ',' + x['interaction_seconds'].to_s + ',' + x['remote_ip'] }
